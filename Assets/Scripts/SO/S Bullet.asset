@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9ff5abbc8610042bd6bc3932aefd93, type: 3}
   m_Name: S Bullet
   m_EditorClassIdentifier: Assembly-CSharp::BulletSO
-  speed: 8
-  color: {r: 0, g: 0.08643603, b: 1, a: 0}
-  bulletState: 0
+  speed: 15
+  damage: 5
+  color: {r: 0, g: 0.042978764, b: 1, a: 1}
+  polarity: 1

@@ -11,34 +11,36 @@ public class PlayerPolarity : MonoBehaviour
 {
     public Polarity CurrentPolarity { get; private set; } = Polarity.N;
 
-    [SerializeField]private float parryWindow = 0.4f;
-    private float lastSwitchTime = -999f;
-
+    [Header("Visual")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Color nColor = Color.blue;
     [SerializeField] private Color sColor = Color.red;
-
     private void Update()
     {
-        if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current != null &&
+            Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             SwitchPolarity();
         }
     }
-
     private void SwitchPolarity()
     {
-        CurrentPolarity = (CurrentPolarity == Polarity.N) ? Polarity.S : Polarity.N;
-        lastSwitchTime = Time.time;
+        CurrentPolarity =
+            CurrentPolarity == Polarity.N
+            ? Polarity.S
+            : Polarity.N;
 
-        if(spriteRenderer != null)
-        {
-            spriteRenderer.color = (CurrentPolarity == Polarity.N) ? nColor : sColor;
-        }
+        UpdateColor();
     }
-    public bool IsParryTiming()
+    private void UpdateColor()
     {
-        return Time.time - lastSwitchTime <= parryWindow;
+        if (spriteRenderer == null)
+            return;
+
+        spriteRenderer.color =
+            CurrentPolarity == Polarity.N
+            ? nColor
+            : sColor;
     }
 
 }

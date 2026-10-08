@@ -1,75 +1,43 @@
-using NUnit.Framework.Internal;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-public enum BulletState
+
+public class Bullet : MagneticObject
 {
-    Fire,
-    Reflect
-}
-public class Bullet : MonoBehaviour
-{
-    [SerializeField]private PlayerPolarity playerPolarity;
+    [SerializeField] private BulletSO bulletSO;
 
-    //[SerializeField]private HealthModule health;
-    [Header("Bullet Settings")]
+    private SpriteRenderer spriteRenderer;
+    private int damage;
 
-    private float speed;
-    private BulletSO bulletSO;
-    public Polarity bulletPolarity;
-    public BulletState bulletState;
-    private SpriteRenderer sr;
-    private Vector2 moveDir;
-
-    private void Awake()
+    protected override void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
-    }
-    public void Init(Vector2 direction , BulletSO data)
-    {
-        moveDir = direction;
-        speed = data.speed;
-        sr.color = data.color;
-        bulletPolarity = data.polarity;
-        bulletState = data.bulletState;
-    }
+        base.Awake();
 
-    public void Update()
-    {
-        transform.Translate(moveDir * speed * Time.deltaTime);
-    }
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
+        if (bulletSO != null)
+        {
+            polarity = bulletSO.polarity;
+            fireSpeed = bulletSO.speed;
+            damage = bulletSO.damage;
+            spriteRenderer.color = bulletSO.color;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (bulletState == BulletState.Fire && collision.CompareTag("Player"))
-        {
-            HealthModule playerHealth = collision.GetComponent<HealthModule>();
-            PlayerPolarity player = collision.GetComponent<PlayerPolarity>();
-            if(player == null) return;
+        if (collision.CompareTag("Player"))
+            return;
 
-            if(player.CurrentPolarity == bulletPolarity)
-            {
-                if(player.IsParryTiming())
-                {
-                    //ReflectToEnemy();
-                }
-                else
-                {
-                    //health.TakeDamage(5);
-                }
-            }
-            else
-            {
-                //ReflectToEnemy();
-            }
-        }
-        else if(bulletState == BulletState.Reflect && collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
-            //HealthModule enemyHealth = collision.GetComponent<HealthModule>();
-            //if(enemyHealth != null)
-            //{
-            //    enemyHealth.TakeDamage(5);
-            //}
+            HealthModule health = collision.GetComponent<HealthModule>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+            }
         }
+
+        gameObject.SetActive(false);
     }
 }
