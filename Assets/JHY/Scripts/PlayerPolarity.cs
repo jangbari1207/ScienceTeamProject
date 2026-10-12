@@ -15,6 +15,10 @@ public class PlayerPolarity : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Color nColor = Color.blue;
     [SerializeField] private Color sColor = Color.red;
+    private void Awake()
+    {
+        UpdateColor();
+    }
     private void Update()
     {
         if (Keyboard.current != null &&
