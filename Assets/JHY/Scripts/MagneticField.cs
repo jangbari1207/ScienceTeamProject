@@ -13,8 +13,10 @@ public class MagneticField : MonoBehaviour
     private float currentTime;
     private PlayerPolarity playerPolarity;
     private MagneticInventory inventory;
+    [SerializeField] private GameObject magneticField;
     private void Awake()
     {
+        magneticField.SetActive(false);
         playerPolarity = GetComponent<PlayerPolarity>();
         inventory = GetComponent<MagneticInventory>();
     }
@@ -33,7 +35,7 @@ public class MagneticField : MonoBehaviour
         if (currentTime <= 0f)
         {
             currentTime = 0f;
-            IsActive = false;
+            TurnOffField();
         }
     }
     private void FixedUpdate()
@@ -76,7 +78,25 @@ public class MagneticField : MonoBehaviour
 
         if (IsActive)
         {
+            if (magneticField != null)
+                magneticField.SetActive(true);
             currentTime = duration;
+        }
+        else
+        {
+            TurnOffField();
+        }
+    }
+    private void TurnOffField()
+    {
+        IsActive = false;
+
+        if (magneticField != null)
+            magneticField.SetActive(false);
+
+        if (inventory != null)
+        {
+            inventory.DropCapturedObjects();
         }
     }
     private void OnDrawGizmosSelected()

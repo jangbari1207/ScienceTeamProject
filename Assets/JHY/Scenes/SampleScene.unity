@@ -599,6 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagneticField
   radius: 2
   duration: 5
+  magneticField: {fileID: 1566392942}
 --- !u!114 &880778853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,7 +739,7 @@ GameObject:
   - component: {fileID: 1566392943}
   - component: {fileID: 1566392945}
   m_Layer: 0
-  m_Name: mf_ccw_sheet_0
+  m_Name: MagneticField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class MagneticInventory : MonoBehaviour
 {
-    [SerializeField] private float fireInterval = 0.05f; // 다중 발사 연사 간격
+    [SerializeField] private float fireInterval = 0.05f; 
 
     private List<MagneticObject> capturedObjects = new List<MagneticObject>();
     private PlayerPolarity playerPolarity;
@@ -26,6 +26,21 @@ public class MagneticInventory : MonoBehaviour
         {
             capturedObjects.Add(magneticObject);
         }
+    }
+    public void DropCapturedObjects()
+    {
+        if (capturedObjects.Count == 0)
+            return;
+
+        foreach (MagneticObject obj in capturedObjects)
+        {
+            if (obj != null)
+            {
+                obj.Drop();
+            }
+        }
+
+        capturedObjects.Clear();
     }
 
     private void AutoFireMatchingPolarity()

@@ -59,4 +59,18 @@ public class MagneticObject : MonoBehaviour
 
         rb.linearVelocity = direction.normalized * fireSpeed;
     }
+    public virtual void Drop()
+    {
+        gameObject.SetActive(true);
+
+        if (player != null)
+        {
+            transform.position = player.transform.position + (Vector3)(Random.insideUnitCircle * 0.5f);
+        }
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero; 
+        }
+    }
 }
