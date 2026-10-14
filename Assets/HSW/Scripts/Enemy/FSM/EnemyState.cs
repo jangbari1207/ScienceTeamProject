@@ -2,10 +2,10 @@ using UnityEngine;
 
 public abstract class EnemyState : MonoBehaviour
 {
-    protected EnemyAi enemy;
+    protected EnemyAI enemy;
     protected EnemyStateMachine stateMachine;
 
-    public EnemyState(EnemyAi enemy, EnemyStateMachine stateMachine)
+    public EnemyState(EnemyAI enemy, EnemyStateMachine stateMachine)
     {
         this.enemy = enemy;
         this.stateMachine = stateMachine;

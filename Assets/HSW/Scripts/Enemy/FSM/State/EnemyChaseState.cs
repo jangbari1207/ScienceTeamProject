@@ -1,16 +1,25 @@
 using UnityEngine;
 
-public class EnemyChaseState : MonoBehaviour
+public class EnemyChaseState : EnemyState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public EnemyChaseState(EnemyAI enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdateState()
     {
+        Vector2 dir =
+            enemy.Player.position - enemy.transform.position;
         
+        float distance =  dir.magnitude;
+
+        if (distance <= enemy.attackRange)
+        {
+            stateMachine.ChangeState(EnemyStateType.Attack);
+            return;
+        }
+        
+        enemy.transform.position += (Vector3)(dir.normalized * enemy.moveSpeed * Time.deltaTime);
     }
+    
 }
