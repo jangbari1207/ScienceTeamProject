@@ -7,7 +7,7 @@ public class HealthModule : MonoBehaviour
 
     public event Action OnDamaged;
     public event Action onDead;
-
+    public bool IsDead => currentHealth <= 0;
     private int currentHealth;
 
     private void Awake()
@@ -16,15 +16,13 @@ public class HealthModule : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        if (currentHealth <= 0) return;
+        if (IsDead) return;
           currentHealth -= damage;
+        Debug.Log(currentHealth);
           OnDamaged?.Invoke();
-        if(currentHealth <= 0)
-        {
-            Dead();
-        }
+        
     }
-
+    
     public void Dead()
     {
         Debug.Log("죽음");
