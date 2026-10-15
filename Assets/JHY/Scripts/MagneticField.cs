@@ -87,6 +87,7 @@ public class MagneticField : MonoBehaviour
             TurnOffField();
         }
     }
+  
     private void TurnOffField()
     {
         IsActive = false;

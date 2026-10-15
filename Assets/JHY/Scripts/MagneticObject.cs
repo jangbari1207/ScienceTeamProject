@@ -54,7 +54,7 @@ public class MagneticObject : MonoBehaviour
 
         if (player != null)
         {
-            transform.position = player.transform.position;
+            transform.position = player.transform.position + (Vector3)(direction.normalized * 1.2f);
         }
 
         rb.linearVelocity = direction.normalized * fireSpeed;

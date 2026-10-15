@@ -15,7 +15,6 @@ public class Bullet : MagneticObject
         base.Awake();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         if (bulletSO != null)
         {
             polarity = bulletSO.polarity;
@@ -27,7 +26,27 @@ public class Bullet : MagneticObject
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-            return;
+        {
+            MagneticField playerField = collision.GetComponent<MagneticField>();
+            MagneticInventory playerInventory = collision.GetComponent<MagneticInventory>();
+
+            if (playerField != null && playerField.IsActive)
+            {
+                if (playerInventory != null)
+                {
+                    playerInventory.Add(this);
+                }
+                gameObject.SetActive(false);
+                return;
+            }
+            else
+            {
+                collision.GetComponent<HealthModule>()?.TakeDamage(damage);
+
+                gameObject.SetActive(false);
+                return;
+            }
+        }
 
         if (collision.CompareTag("Enemy"))
         {
@@ -36,8 +55,8 @@ public class Bullet : MagneticObject
             {
                 health.TakeDamage(damage);
             }
+            gameObject.SetActive(false);
+            return;
         }
-
-        gameObject.SetActive(false);
     }
 }
