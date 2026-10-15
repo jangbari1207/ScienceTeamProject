@@ -32,11 +32,15 @@ public class EnemyAttackState : EnemyState
     {
         Vector2 dir =
             (enemy.Player.position - enemy.firePoint.position).normalized;
+        
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        angle -= 90f;
 
         GameObject bullet = Object.Instantiate(
             enemy.bulletPrefab,
             enemy.firePoint.position,
-            Quaternion.identity);
+            Quaternion.Euler(0,0,angle));
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.linearVelocity = dir * 8f;
