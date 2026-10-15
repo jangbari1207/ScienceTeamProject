@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAi : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
     public EnemyStateMachine stateMachine;
     
@@ -17,6 +17,14 @@ public class EnemyAi : MonoBehaviour
     private void Awake()
     {
         stateMachine = new EnemyStateMachine();
+        stateMachine.AddState(EnemyStateType.Chase, new EnemyChaseState(this, stateMachine));
+        stateMachine.AddState(EnemyStateType.Attack, new EnemyAttackState(this, stateMachine));
         
+        stateMachine.Initialize(EnemyStateType.Chase);
+    }
+
+    private void Update()
+    {
+        stateMachine.CurrentState.UpdateState();
     }
 }
