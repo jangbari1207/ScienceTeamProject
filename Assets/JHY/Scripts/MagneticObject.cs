@@ -70,7 +70,7 @@ public class MagneticObject : MonoBehaviour
 
         if (rb != null)
         {
-            rb.linearVelocity = Vector2.zero; 
+            rb.linearVelocity = Vector2.zero; // 속도 초기화
         }
     }
 }
