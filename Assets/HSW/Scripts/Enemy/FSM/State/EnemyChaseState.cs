@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyChaseState : EnemyState
 {
-    public EnemyChaseState(EnemyAI enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine)
+    public EnemyChaseState(AbstractEnemy enemy, EnemyStateMachine stateMachine, string aniBoolName) : base(enemy, stateMachine, aniBoolName)
     {
     }
 

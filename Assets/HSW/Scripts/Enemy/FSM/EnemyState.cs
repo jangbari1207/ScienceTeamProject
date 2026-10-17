@@ -1,28 +1,36 @@
 using UnityEngine;
 
-public abstract class EnemyState : MonoBehaviour
+public abstract class EnemyState
 {
-    protected EnemyAI enemy;
+    protected AbstractEnemy enemy;
     protected EnemyStateMachine stateMachine;
+    protected int animHash;
+    protected bool aniEndTrigger;
 
-    public EnemyState(EnemyAI enemy, EnemyStateMachine stateMachine)
+    public EnemyState(AbstractEnemy enemy, EnemyStateMachine stateMachine,string aniBoolName)
     {
         this.enemy = enemy;
         this.stateMachine = stateMachine;
+        animHash = Animator.StringToHash(aniBoolName);
     }
 
     public virtual void Enter()
     {
-        
+        aniEndTrigger = false;
+        enemy.AnimCompo.SetBool(animHash, true);
     }
 
     public virtual void Exit()
     {
-        
+        enemy.AnimCompo.SetBool(animHash, false);
     }
 
     public virtual void UpdateState()
     {
         
+    }
+    public virtual void AniEndTrigger()
+    {
+        aniEndTrigger = true;
     }
 }

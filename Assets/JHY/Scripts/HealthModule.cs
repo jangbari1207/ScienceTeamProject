@@ -17,15 +17,22 @@ public class HealthModule : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (IsDead) return;
-          currentHealth -= damage;
-        Debug.Log(currentHealth);
-          OnDamaged?.Invoke();
-        
+
+        currentHealth -= damage;
+        Debug.Log($"남은 체력: {currentHealth}");
+        OnDamaged?.Invoke();
+
+        if (IsDead)
+        {
+            Dead();
+        }
+
     }
     
     public void Dead()
     {
         Debug.Log("죽음");
+        onDead?.Invoke();
     }
 
 }

@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class EnemyAttackState : EnemyState
 {
-    public EnemyAttackState(
-        EnemyAI enemy,
-        EnemyStateMachine stateMachine)
-        : base(enemy, stateMachine)
+    public EnemyAttackState(AbstractEnemy enemy, EnemyStateMachine stateMachine, string aniBoolName) : base(enemy, stateMachine, aniBoolName)
     {
     }
 
