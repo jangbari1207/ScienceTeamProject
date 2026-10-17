@@ -14,6 +14,12 @@ public class EnemyAttackState : EnemyState
         if (dir.magnitude > enemy.attackRange)
         {
             stateMachine.ChangeState(EnemyStateType.Chase);
+            return;
+        }
+
+        if (aniEndTrigger)
+        {
+            stateMachine.ChangeState(EnemyStateType.Idle);
         }
     }
 
@@ -22,8 +28,6 @@ public class EnemyAttackState : EnemyState
         if (Time.time < enemy.lastShotTime + enemy.fireRate) return;
         enemy.lastShotTime = Time.time;
         Shoot();
-
-        stateMachine.ChangeState(EnemyStateType.Chase);
     }
 
     private void Shoot()

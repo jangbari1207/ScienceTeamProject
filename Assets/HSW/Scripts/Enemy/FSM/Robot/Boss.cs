@@ -8,7 +8,7 @@ public class Boss : AbstractEnemy
     {
         base.Awake();
         health = GetComponent<HealthModule>();
-
+        stateMachine.AddState(EnemyStateType.Idle, new EnemyIdleState(this, stateMachine, "Idle"));
         stateMachine.AddState(EnemyStateType.Chase, new EnemyChaseState(this, stateMachine, "Chase"));
         stateMachine.AddState(EnemyStateType.Attack, new EnemyAttackState(this, stateMachine, "Attack"));
         stateMachine.AddState(EnemyStateType.Hit, new EnemyHitState(this, stateMachine, "Hit"));

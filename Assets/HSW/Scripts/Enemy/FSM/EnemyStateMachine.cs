@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 
 public enum EnemyStateType
 {
+    Idle,
     Chase,
     Attack,
     Hit,
