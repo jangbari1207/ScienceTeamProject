@@ -24,13 +24,13 @@ public class WaveManager : MonoBehaviour
     }
     private void Start()
     {
-        waveText.text = "Wave" + waveCount;
+        waveText.text = "Wave " + waveCount;
     }
     private void Update()
     {
         waveCurrentTime += Time.deltaTime;
 
-        waveText.text = "Wave" + waveCount;
+        waveText.text = "Wave " + waveCount;
         if (waveCurrentTime >=  maxNextTime)
         {
             waveCount++;

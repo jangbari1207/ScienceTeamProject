@@ -8,7 +8,6 @@ public abstract class AbstractEnemy : MonoBehaviour
     public float moveSpeed = 5f;
     public float attackRange = 5f;
     public float fireRate = 1f;
-    
     public float lastShotTime;
 
     public Animator AnimCompo { get; private set; }

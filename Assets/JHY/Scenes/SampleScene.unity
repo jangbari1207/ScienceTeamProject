@@ -86823,7 +86823,7 @@ MonoBehaviour:
   - {fileID: 6791718248501159029, guid: c15f36f3f87d9ff47a84a8cd6aa35ab1, type: 3}
   - {fileID: 9119799271663681893, guid: 6ffc6a44c8c724746985371e0d05e01a, type: 3}
   - {fileID: 0}
-  bossPrefab: {fileID: 0}
+  bossPrefab: {fileID: 1113028590071622858, guid: 2c58f96983d484749aea8f888b28dbdc, type: 3}
   spawnPoints:
   - {fileID: 381901837}
   - {fileID: 1166669074}
@@ -173507,7 +173507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 140}
+  m_AnchoredPosition: {x: 50, y: 140}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051592302
@@ -173762,8 +173762,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.029462934, y: -0.029769182}
-  m_Size: {x: 0.6745095, y: 1.1296964}
+  m_Offset: {x: -0.15693283, y: -0.029769182}
+  m_Size: {x: 0.7617607, y: 1.1296964}
   m_Direction: 0
 --- !u!1 &3678056253839828189
 GameObject:

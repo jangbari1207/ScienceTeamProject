@@ -13,13 +13,18 @@ public class EnemyChaseState : EnemyState
         enemy.RenderCompo.Flipx(dir.x);
         float distance =  dir.magnitude;
 
-        if (distance <= enemy.attackRange)
+        if (distance > enemy.attackRange)
         {
-            stateMachine.ChangeState(EnemyStateType.Attack);
+            enemy.transform.position += (Vector3)(dir.normalized * enemy.moveSpeed * Time.deltaTime);
             return;
         }
-        
-        enemy.transform.position += (Vector3)(dir.normalized * enemy.moveSpeed * Time.deltaTime);
+
+        if (Time.time < enemy.lastShotTime + enemy.fireRate)
+        {
+            return;
+        }
+
+        stateMachine.ChangeState(EnemyStateType.Attack);
     }
     
 }
