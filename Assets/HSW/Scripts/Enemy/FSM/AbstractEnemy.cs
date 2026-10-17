@@ -12,15 +12,25 @@ public abstract class AbstractEnemy : MonoBehaviour
     public float lastShotTime;
 
     public Animator AnimCompo { get; private set; }
-
+    public PlayerRenderer RenderCompo { get; private set; }
     protected virtual void Awake()
     {
+        if (Player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                Player = playerObj.transform;
+            }
+        }
         AnimCompo = GetComponentInChildren<Animator>();
+        RenderCompo = GetComponentInChildren<PlayerRenderer>();
     }
     public virtual void AnimationEndTrigger()
     {
 
     }
+    public virtual void AnimationFireTrigger() { }
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.purple;

@@ -19,7 +19,7 @@ public class MagneticObject : MonoBehaviour
         player = FindFirstObjectByType<PlayerPolarity>();
     }
 
-    public bool ApplyMagneticForce(Vector2 playerPosition, Polarity playerPolarity, Vector2 mouseDirection)
+    public virtual bool ApplyMagneticForce(Vector2 playerPosition, Polarity playerPolarity, Vector2 mouseDirection)
     {
         Vector2 directionToPlayer = playerPosition - rb.position;
         float distance = directionToPlayer.magnitude;

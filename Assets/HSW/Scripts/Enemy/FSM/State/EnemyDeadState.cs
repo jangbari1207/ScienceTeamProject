@@ -15,7 +15,7 @@ public class EnemyDeadState : EnemyState
         base.UpdateState();
         if(aniEndTrigger)
         {
-            
+            Object.Destroy(enemy.gameObject);
         }
     }
 }

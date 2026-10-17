@@ -8,36 +8,34 @@ public class EnemyAttackState : EnemyState
 
     public override void UpdateState()
     {
-        float distance = Vector2.Distance(
-            enemy.transform.position,
-            enemy.Player.position);
+        Vector2 dir = enemy.Player.position - enemy.transform.position;
+        enemy.RenderCompo.Flipx(dir.x);
 
-        if (distance > enemy.attackRange)
+        if (dir.magnitude > enemy.attackRange)
         {
             stateMachine.ChangeState(EnemyStateType.Chase);
-            return;
         }
+    }
 
-        if (Time.time >= enemy.lastShotTime + enemy.fireRate)
-        {
-            Shoot();
-            enemy.lastShotTime = Time.time;
-        }
+    public override void AniFireTrigger()
+    {
+        if (Time.time < enemy.lastShotTime + enemy.fireRate) return;
+        enemy.lastShotTime = Time.time;
+        Shoot();
     }
 
     private void Shoot()
     {
         Vector2 dir =
             (enemy.Player.position - enemy.firePoint.position).normalized;
-        
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         angle -= 90f;
 
         GameObject bullet = Object.Instantiate(
             enemy.bulletPrefab,
             enemy.firePoint.position,
-            Quaternion.Euler(0,0,angle));
+            Quaternion.Euler(0, 0, angle));
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.linearVelocity = dir * 8f;

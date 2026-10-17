@@ -11,4 +11,8 @@ public class EnemyAnimation : MonoBehaviour
     {
         enemy.AnimationEndTrigger();
     }
+    public void AnimationFire()
+    {
+        enemy.AnimationFireTrigger();
+    }
 }

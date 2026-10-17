@@ -29,6 +29,7 @@ public abstract class EnemyState
     {
         
     }
+    public virtual void AniFireTrigger() { }
     public virtual void AniEndTrigger()
     {
         aniEndTrigger = true;

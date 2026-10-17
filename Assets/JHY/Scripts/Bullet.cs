@@ -9,6 +9,7 @@ public class Bullet : MagneticObject
 
     private SpriteRenderer spriteRenderer;
     private int damage;
+    private bool isPlayerBullet = false; 
 
     protected override void Awake()
     {
@@ -23,8 +24,39 @@ public class Bullet : MagneticObject
             spriteRenderer.color = bulletSO.color;
         }
     }
+
+    public override void Fire(Vector2 direction)
+    {
+        base.Fire(direction);
+        isPlayerBullet = true;
+    }
+    public override bool ApplyMagneticForce(Vector2 playerPosition, Polarity playerPolarity, Vector2 mouseDirection)
+    {
+        bool captured = base.ApplyMagneticForce(playerPosition, playerPolarity, mouseDirection);
+
+        if (!captured && polarity == playerPolarity)
+        {
+            isPlayerBullet = true;
+        }
+
+        return captured;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isPlayerBullet)
+        {
+            if (collision.CompareTag("Enemy"))
+            {
+                HealthModule health = collision.GetComponent<HealthModule>();
+                if (health != null)
+                {
+                    health.TakeDamage(damage);
+                }
+                gameObject.SetActive(false);
+            }
+            return;
+        }
+
         if (collision.CompareTag("Player"))
         {
             MagneticField playerField = collision.GetComponent<MagneticField>();
@@ -42,7 +74,6 @@ public class Bullet : MagneticObject
             else
             {
                 collision.GetComponent<HealthModule>()?.TakeDamage(damage);
-
                 gameObject.SetActive(false);
                 return;
             }
@@ -50,12 +81,6 @@ public class Bullet : MagneticObject
 
         if (collision.CompareTag("Enemy"))
         {
-            HealthModule health = collision.GetComponent<HealthModule>();
-            if (health != null)
-            {
-                health.TakeDamage(damage);
-            }
-            gameObject.SetActive(false);
             return;
         }
     }

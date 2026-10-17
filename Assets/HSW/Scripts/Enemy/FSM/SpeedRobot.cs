@@ -1,7 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Robot : AbstractEnemy
+public class SpeedRobot : AbstractEnemy
 {
     public EnemyStateMachine stateMachine = new EnemyStateMachine();
     private HealthModule health;
@@ -11,7 +10,7 @@ public class Robot : AbstractEnemy
         health = GetComponent<HealthModule>();
 
         stateMachine.AddState(EnemyStateType.Chase, new EnemyChaseState(this, stateMachine, "Chase"));
-        stateMachine.AddState(EnemyStateType.Attack, new EnemyAttackState(this, stateMachine, "Attack"));
+        stateMachine.AddState(EnemyStateType.Attack, new EnemySpeedAttackState(this, stateMachine, "Attack"));
         stateMachine.AddState(EnemyStateType.Hit, new EnemyHitState(this, stateMachine, "Hit"));
         stateMachine.AddState(EnemyStateType.Dead, new EnemyDeadState(this, stateMachine, "Dead"));
 
@@ -30,5 +29,10 @@ public class Robot : AbstractEnemy
     {
         base.AnimationEndTrigger();
         stateMachine.CurrentState.AniEndTrigger();
+    }
+    public override void AnimationFireTrigger()
+    {
+        base.AnimationFireTrigger();
+        stateMachine.CurrentState.AniFireTrigger();
     }
 }

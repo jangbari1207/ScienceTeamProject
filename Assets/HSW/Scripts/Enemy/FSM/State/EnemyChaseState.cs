@@ -10,7 +10,7 @@ public class EnemyChaseState : EnemyState
     {
         Vector2 dir =
             enemy.Player.position - enemy.transform.position;
-        
+        enemy.RenderCompo.Flipx(dir.x);
         float distance =  dir.magnitude;
 
         if (distance <= enemy.attackRange)
