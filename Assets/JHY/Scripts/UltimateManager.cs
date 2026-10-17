@@ -10,6 +10,8 @@ public class UltimateManager : MonoBehaviour
     private HealthModule health;
 
     public bool CanUltimate { get; private set; } = false;
+
+    [SerializeField]private GameObject UltimatePanel;
     private void Awake()
     {
         health = GetComponent<HealthModule>();
@@ -34,7 +36,7 @@ public class UltimateManager : MonoBehaviour
 
     private void Ultimate()
     {
-
+        UltimatePanel.SetActive(true);
     }
 
     private void PlusGage()
