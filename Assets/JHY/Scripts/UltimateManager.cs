@@ -1,34 +1,43 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UltimateManager : MonoBehaviour
 {
-    private float currentUltimateGage=0f;
+    public static UltimateManager Instance { get; private set; }
+
+    private float currentUltimateGage = 0f;
     private float maxUltimateGage = 100f;
 
-    private HealthModule health;
-
     public bool CanUltimate { get; private set; } = false;
+    [SerializeField] private Slider ultimateSlider;
+    [SerializeField] private GameObject UltimatePanel;
 
-    [SerializeField]private GameObject UltimatePanel;
     private void Awake()
     {
-        health = GetComponent<HealthModule>();
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
     private void Start()
     {
-        health.onDead += PlusGage;
+        if (ultimateSlider != null)
+        {
+            ultimateSlider.maxValue = maxUltimateGage;
+            ultimateSlider.value = currentUltimateGage;
+        }
     }
-    private void OnDestroy()
-    {
-        health.onDead -= PlusGage;
-    }
+
     private void Update()
     {
-        if (!CanUltimate) return;
-
-        if(CanUltimate&&Keyboard.current.xKey.wasPressedThisFrame)
+        if (CanUltimate && Keyboard.current.xKey.wasPressedThisFrame)
         {
             Ultimate();
         }
@@ -37,11 +46,27 @@ public class UltimateManager : MonoBehaviour
     private void Ultimate()
     {
         UltimatePanel.SetActive(true);
+        currentUltimateGage = 0f;
+        CanUltimate = false;
+
+        if (ultimateSlider != null)
+        {
+            ultimateSlider.value = currentUltimateGage;
+        }
     }
 
-    private void PlusGage()
+    public void PlusGage()
     {
+        if (CanUltimate) return;
+
         currentUltimateGage += 5f;
+        currentUltimateGage = Mathf.Clamp(currentUltimateGage, 0f, maxUltimateGage);
+
+        if (ultimateSlider != null)
+        {
+            ultimateSlider.value = currentUltimateGage;
+        }
+
         if (currentUltimateGage >= maxUltimateGage)
         {
             CanUltimate = true;

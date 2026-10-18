@@ -33,6 +33,10 @@ public class HealthModule : MonoBehaviour
     {
         Debug.Log("죽음");
         onDead?.Invoke();
+        if (UltimateManager.Instance != null)
+        {
+            UltimateManager.Instance.PlusGage();
+        }
     }
 
 }
