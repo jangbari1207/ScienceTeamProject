@@ -17,12 +17,21 @@ public abstract class EnemyState
     public virtual void Enter()
     {
         aniEndTrigger = false;
-        enemy.AnimCompo.SetBool(animHash, true);
+
+        if (enemy.AnimCompo != null &&
+            enemy.AnimCompo.runtimeAnimatorController != null)
+        {
+            enemy.AnimCompo.SetBool(animHash, true);
+        }
     }
 
     public virtual void Exit()
     {
-        enemy.AnimCompo.SetBool(animHash, false);
+        if (enemy.AnimCompo != null &&
+            enemy.AnimCompo.runtimeAnimatorController != null)
+        {
+            enemy.AnimCompo.SetBool(animHash, false);
+        }
     }
 
     public virtual void UpdateState()

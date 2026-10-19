@@ -9,6 +9,7 @@ public abstract class AbstractEnemy : MonoBehaviour
     public float attackRange = 5f;
     public float fireRate = 1f;
     public float lastShotTime;
+    public GameObject previewPrefab;
 
     public Animator AnimCompo { get; private set; }
     public PlayerRenderer RenderCompo { get; private set; }

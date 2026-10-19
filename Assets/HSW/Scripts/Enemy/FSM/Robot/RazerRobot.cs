@@ -23,6 +23,12 @@ public class RazerRobot : AbstractEnemy
     }
     private void Update()
     {
+        if (stateMachine.CurrentState == null)
+        {
+            Debug.LogError("fsm null");
+            return;
+        }
+
         stateMachine.CurrentState.UpdateState();
     }
     public override void AnimationEndTrigger()
