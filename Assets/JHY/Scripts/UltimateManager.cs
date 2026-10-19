@@ -12,7 +12,6 @@ public class UltimateManager : MonoBehaviour
 
     public bool CanUltimate { get; private set; } = false;
     [SerializeField] private Slider ultimateSlider;
-    [SerializeField] private GameObject UltimatePanel;
 
     private void Awake()
     {
@@ -45,7 +44,16 @@ public class UltimateManager : MonoBehaviour
 
     private void Ultimate()
     {
-        UltimatePanel.SetActive(true);
+        QuizManager quizManager = GetComponent<QuizManager>();
+        if (quizManager != null)
+        {
+            quizManager.StartQuiz();
+        }
+        else
+        {
+            Debug.LogError("같은 오브젝트에 QuizManager가 없습니다!");
+        }
+
         currentUltimateGage = 0f;
         CanUltimate = false;
 
@@ -54,7 +62,6 @@ public class UltimateManager : MonoBehaviour
             ultimateSlider.value = currentUltimateGage;
         }
     }
-
     public void PlusGage()
     {
         if (CanUltimate) return;
