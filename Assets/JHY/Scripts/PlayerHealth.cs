@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,17 +14,30 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject healthUIObject;
     [SerializeField] private GameObject ultimateUI;
     [SerializeField] private GameObject waveText;
+
+    [Header("피격 연출 설정")]
+    [SerializeField] private float flashDuration = 0.1f; 
+
     public event Action OnDamaged;
     public event Action OnDead;
     public bool IsDead => currentHealth <= 0;
     public bool IsInvincible { get; set; } = false;
     private int currentHealth;
 
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
         currentHealth = maxHealth;
         UpdateHealthUI();
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color;
+        }
 
         if (gameOverPanel != null)
         {
@@ -42,17 +56,29 @@ public class PlayerHealth : MonoBehaviour
         OnDamaged?.Invoke();
         UpdateHealthUI();
 
+        if (spriteRenderer != null)
+        {
+            StartCoroutine(FlashRoutine());
+        }
+
         if (IsDead)
         {
             Die();
         }
     }
+
+    private IEnumerator FlashRoutine()
+    {
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
+    }
     public void Heal(int amount)
     {
-        if (IsDead) return; 
+        if (IsDead) return;
 
         currentHealth += amount;
-        currentHealth = Mathf.Min(currentHealth, maxHealth); 
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
 
         Debug.Log($"플레이어 체력 회복: {amount}, 현재 체력: {currentHealth}");
         UpdateHealthUI();
@@ -69,7 +95,7 @@ public class PlayerHealth : MonoBehaviour
         {
             ultimateUI.SetActive(false);
         }
-        if(waveText != null)
+        if (waveText != null)
         {
             waveText.SetActive(false);
         }

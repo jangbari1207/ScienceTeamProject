@@ -37,7 +37,7 @@ public class EnemyRazerState : EnemyState
     {
         if (fired) return;
         fired = true;
-        //SoundManager.Instance.PlaySFX(enemy.laserSound);
+        SoundManager.Instance.PlaySFX(enemy.laserSound);
 
         Vector2 dir = (Vector2)enemy.Player.position - (Vector2)enemy.firePoint.position;
 
