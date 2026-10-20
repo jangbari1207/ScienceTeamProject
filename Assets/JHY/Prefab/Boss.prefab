@@ -269,10 +269,11 @@ MonoBehaviour:
   Player: {fileID: 0}
   firePoint: {fileID: 5506672579479791375}
   bulletPrefab: {fileID: 4066433228245175616, guid: 803edf9fdbcc4004ab619039e68d80ac, type: 3}
-  moveSpeed: 3
+  moveSpeed: 4
   attackRange: 8
   fireRate: 1
   lastShotTime: 0
+  previewPrefab: {fileID: 0}
 --- !u!1 &2291486387400664551
 GameObject:
   m_ObjectHideFlags: 0

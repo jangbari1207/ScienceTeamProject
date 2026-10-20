@@ -72,7 +72,10 @@ public class PlayerHealth : MonoBehaviour
             healthSlider.value = currentHealth;
         }
     }
-
+    public void GoMain()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     public void RestartGame()
     {
         Time.timeScale = 1f; 

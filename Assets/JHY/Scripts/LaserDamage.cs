@@ -6,10 +6,10 @@ public class LaserDamage : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            HealthModule health = collision.GetComponent<HealthModule>();
-            if (health != null)
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
             {
-                health.TakeDamage(10);
+                playerHealth.TakeDamage(10);
             }
         }
     }
