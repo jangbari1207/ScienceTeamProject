@@ -10,12 +10,16 @@ public class ButtonManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("JHY/Scenes/SampleScene");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void Exit()
     {
-        
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
     }
 
     public void Setting()
