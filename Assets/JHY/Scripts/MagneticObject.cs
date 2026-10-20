@@ -13,6 +13,7 @@ public class MagneticObject : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerPolarity player;
     public AudioClip parringSound;
+    private bool hasPlayedParry = false;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,6 +27,7 @@ public class MagneticObject : MonoBehaviour
 
         if (polarity != playerPolarity)
         {
+            hasPlayedParry = false;
             if (distance <= captureDistance)
             {
                 Capture();
@@ -36,7 +38,11 @@ public class MagneticObject : MonoBehaviour
         }
         else
         {
-            SoundManager.Instance.PlaySFX(parringSound);
+            if (!hasPlayedParry)
+            {
+                SoundManager.Instance.PlaySFX(parringSound);
+                hasPlayedParry = true; 
+            }
             rb.linearVelocity = mouseDirection * fireSpeed;
         }
 

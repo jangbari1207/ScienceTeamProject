@@ -21,7 +21,6 @@ public class HealthModule : MonoBehaviour
         if (IsDead) return;
 
         currentHealth -= damage;
-        Debug.Log($"남은 체력: {currentHealth}");
         OnDamaged?.Invoke();
 
         if (IsDead)
@@ -33,7 +32,6 @@ public class HealthModule : MonoBehaviour
     
     public void Dead()
     {
-        Debug.Log("죽음");
         if (col != null)
         {
             col.enabled = false;

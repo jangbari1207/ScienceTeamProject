@@ -33,7 +33,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void HandleWave(int waveCount)
     {
-        Debug.Log($"현재 웨이브: {waveCount}");
         StartWaveSpawning(waveCount);
     }
 

@@ -192545,63 +192545,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 231.27005}
   m_EdgeRadius: 0
---- !u!1001 &845933606
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20.417395
-      objectReference: {fileID: 0}
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5029745
-      objectReference: {fileID: 0}
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3185472311912094889, guid: e237907c227e4d64d87578f888842d47, type: 3}
-      propertyPath: m_Name
-      value: RazerEnemy (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e237907c227e4d64d87578f888842d47, type: 3}
 --- !u!1 &846728344
 GameObject:
   m_ObjectHideFlags: 0
@@ -201283,7 +201226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.32704395, g: 0.32704395, b: 0.32704395, a: 1}
+  m_Color: {r: 0.509434, g: 0.2130651, b: 0.2130651, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -228181,8 +228124,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Continue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bb34fb7b0a5d4ce4a966fa49701be6b3, type: 2}
+  m_sharedMaterial: {fileID: 6233833650267957782, guid: bb34fb7b0a5d4ce4a966fa49701be6b3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -358974,7 +358917,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -48, y: 191}
+  m_AnchoredPosition: {x: -64, y: 191}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869310290
@@ -402879,8 +402822,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bb34fb7b0a5d4ce4a966fa49701be6b3, type: 2}
+  m_sharedMaterial: {fileID: 6233833650267957782, guid: bb34fb7b0a5d4ce4a966fa49701be6b3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -411638,7 +411581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.32704395, g: 0.32704395, b: 0.32704395, a: 1}
+  m_Color: {r: 0.509434, g: 0.2130651, b: 0.2130651, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -411679,5 +411622,4 @@ SceneRoots:
   - {fileID: 314637229}
   - {fileID: 1068549776}
   - {fileID: 1358221747}
-  - {fileID: 845933606}
   - {fileID: 634854169}
