@@ -12,12 +12,12 @@ public class Player : MonoBehaviour
         InputCompo = GetComponent<PlayerInput>();
         MoveCompo = GetComponent<PlayerMovement>();
 
-        //AnimCompo = GetComponentInChildren<PlayerAnimation>();
+        AnimCompo = GetComponentInChildren<PlayerAnimation>();
     }
 
     private void Update()
     {
-        //AnimCompo.SetAnimation(MoveCompo);
+        AnimCompo.SetAnimation(MoveCompo);
         MoveCompo.SetDir(InputCompo.MoveDir);
     }
 }

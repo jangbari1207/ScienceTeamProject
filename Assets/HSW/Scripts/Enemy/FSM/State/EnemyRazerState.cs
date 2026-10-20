@@ -1,13 +1,12 @@
 using UnityEngine;
-
 public class EnemyRazerState : EnemyState
 {
     private GameObject previewObject;
+
     private bool fired;
-
     public EnemyRazerState(AbstractEnemy enemy, EnemyStateMachine stateMachine, string aniBoolName)
-        : base(enemy, stateMachine, aniBoolName) { }
 
+    : base(enemy, stateMachine, aniBoolName) { }
     public override void Enter()
     {
         base.Enter();
@@ -18,15 +17,19 @@ public class EnemyRazerState : EnemyState
     public override void UpdateState()
     {
         if (PlayerHealth.Instance == null || PlayerHealth.Instance.IsDead) return;
+
         if (enemy.Player == null || enemy.firePoint == null) return;
 
         // 발사 전까지만 플레이어를 따라 조준
         if (!fired)
         {
             Vector2 dir = (Vector2)enemy.Player.position - (Vector2)enemy.firePoint.position;
+
             enemy.RenderCompo.Flipx(dir.x);
+
             UpdatePreview(dir);
         }
+
     }
 
     // 애니메이션 이벤트: AnimationFire
@@ -34,9 +37,12 @@ public class EnemyRazerState : EnemyState
     {
         if (fired) return;
         fired = true;
+        //SoundManager.Instance.PlaySFX(enemy.laserSound);
 
         Vector2 dir = (Vector2)enemy.Player.position - (Vector2)enemy.firePoint.position;
+
         DestroyPreview();
+
         FireLaser(dir.normalized);
     }
 
@@ -44,7 +50,9 @@ public class EnemyRazerState : EnemyState
     public override void AniEndTrigger()
     {
         base.AniEndTrigger();
-        enemy.lastShotTime = Time.time;               // 쿨타임 시작
+
+        enemy.lastShotTime = Time.time; // 쿨타임 시작
+
         stateMachine.ChangeState(EnemyStateType.Chase);
     }
 
@@ -54,7 +62,6 @@ public class EnemyRazerState : EnemyState
 
         previewObject = Object.Instantiate(enemy.previewPrefab, enemy.firePoint.position, Quaternion.identity);
     }
-
     private void UpdatePreview(Vector2 dir)
     {
         if (previewObject == null) return;
@@ -63,7 +70,6 @@ public class EnemyRazerState : EnemyState
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         previewObject.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
-
     private void FireLaser(Vector2 dir)
     {
         if (enemy.bulletPrefab == null) { Debug.LogError("Laser Prefab 미연결"); return; }
@@ -79,10 +85,9 @@ public class EnemyRazerState : EnemyState
         if (previewObject != null) Object.Destroy(previewObject);
         previewObject = null;
     }
-
     public override void Exit()
     {
         base.Exit();
-        DestroyPreview();   // 피격 등으로 중간에 끊겨도 조준선 정리
+        DestroyPreview(); // 피격 등으로 중간에 끊겨도 조준선 정리
     }
 }
