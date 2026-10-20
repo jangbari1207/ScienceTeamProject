@@ -1134,6 +1134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonManager
   SettingPanel: {fileID: 583014600}
+  animtor: {fileID: 1228395132}
   clickSound: {fileID: 8300000, guid: 09d5aa6ff93c42b43a0a2d575539bcbc, type: 3}
 --- !u!4 &1118215483
 Transform:
