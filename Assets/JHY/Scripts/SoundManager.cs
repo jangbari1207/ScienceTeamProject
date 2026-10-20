@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -6,6 +8,8 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     [Header("Audio Mixer")]
+    [SerializeField] private AudioClip introBGM;
+    [SerializeField] private float introDelay = 1f;
     [SerializeField] private AudioMixer audioMixer;
 
     [Header("Sound Settings")]
@@ -42,6 +46,15 @@ public class SoundManager : MonoBehaviour
         SetMasterVolume(soundSettings.masterVolume);
         SetBGMVolume(soundSettings.bgmVolume);
         SetSFXVolume(soundSettings.sfxVolume);
+        
+        StartCoroutine(PlayIntroBGM());
+    }
+    
+    private IEnumerator PlayIntroBGM()
+    {
+        yield return new WaitForSeconds(introDelay);
+
+        PlayBGM(introBGM);
     }
 
     public void SetMasterVolume(float value)
@@ -97,4 +110,6 @@ public class SoundManager : MonoBehaviour
             sfxSource.Stop();
         }
     }
+    
+    
 }
