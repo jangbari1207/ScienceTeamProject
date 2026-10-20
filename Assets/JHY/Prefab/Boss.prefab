@@ -276,6 +276,7 @@ MonoBehaviour:
   previewPrefab: {fileID: 0}
   normalgunSound: {fileID: 0}
   laserSound: {fileID: 0}
+  bossSound: {fileID: 8300000, guid: c5c057194e219f74a9c25b645883b7d0, type: 3}
   hitSound: {fileID: 8300000, guid: 1e5518f4b43612040a98c68a018549fb, type: 3}
   deadSound: {fileID: 8300000, guid: 1df958e89a1ec684b813c2a89fa0aa9b, type: 3}
 --- !u!1 &2291486387400664551
