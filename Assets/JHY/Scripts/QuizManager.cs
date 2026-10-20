@@ -13,7 +13,7 @@ public class QuizManager : MonoBehaviour
 
     [Header("원형 범위 연출 컴포넌트 연결")]
     [SerializeField] private CircularRangeEffect rangeEffect;
-
+    [SerializeField] private AudioClip openQZSound;
     private int currentPanelIndex = 0;
     private int comboCount = 0;
 
@@ -21,6 +21,7 @@ public class QuizManager : MonoBehaviour
     {
         currentPanelIndex = 0;
         comboCount = 0;
+        OpenQZ();
         if (PlayerHealth.Instance != null)
         {
             PlayerHealth.Instance.IsInvincible = true;
@@ -40,7 +41,10 @@ public class QuizManager : MonoBehaviour
                 quizPanels[i].SetActive(i == 0);
         }
     }
-
+    public void OpenQZ()
+    {
+        SoundManager.Instance.PlaySFX(openQZSound);
+    }
     public void OnCorrectAnswer()
     {
         comboCount++;

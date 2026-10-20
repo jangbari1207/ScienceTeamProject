@@ -8,6 +8,9 @@ public class ButtonManager : MonoBehaviour
 {
     public GameObject SettingPanel;
     [SerializeField] private AudioClip clickSound;
+    [SerializeField] private AudioClip correctSound;
+    [SerializeField] private AudioClip wrongSound;
+   
     public void Play()
     {
         SceneManager.LoadScene("SampleScene");
@@ -25,6 +28,15 @@ public class ButtonManager : MonoBehaviour
     {
         SoundManager.Instance.PlaySFX(clickSound);
     }
+    public void CorrectButton()
+    {
+        SoundManager.Instance.PlaySFX(correctSound);
+    }
+    public void WrongButton()
+    {
+        SoundManager.Instance.PlaySFX(wrongSound);
+    }
+    
     public void Setting()
     {
         if (SettingPanel != null)
