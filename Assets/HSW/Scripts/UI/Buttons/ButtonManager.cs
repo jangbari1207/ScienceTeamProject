@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour
 {
     public GameObject SettingPanel;
-
+    [SerializeField] private AudioClip clickSound;
     public void Play()
     {
         SceneManager.LoadScene("SampleScene");
@@ -21,7 +21,10 @@ public class ButtonManager : MonoBehaviour
         Application.Quit();
         #endif
     }
-
+    public void ButtonClick()
+    {
+        SoundManager.Instance.PlaySFX(clickSound);
+    }
     public void Setting()
     {
         if (SettingPanel != null)
