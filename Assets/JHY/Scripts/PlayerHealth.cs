@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public event Action OnDamaged;
     public event Action OnDead;
     public bool IsDead => currentHealth <= 0;
-
+    public bool IsInvincible { get; set; } = false;
     private int currentHealth;
 
     private void Awake()
@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (IsDead) return;
+        if (IsDead || IsInvincible) return;
 
         currentHealth -= damage;
         currentHealth = Mathf.Max(0, currentHealth);

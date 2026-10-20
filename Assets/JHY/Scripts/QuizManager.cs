@@ -21,7 +21,10 @@ public class QuizManager : MonoBehaviour
     {
         currentPanelIndex = 0;
         comboCount = 0;
-
+        if (PlayerHealth.Instance != null)
+        {
+            PlayerHealth.Instance.IsInvincible = true;
+        }
         if (rangeEffect != null)
         {
             rangeEffect.ShowEffect(comboCount);
@@ -72,6 +75,10 @@ public class QuizManager : MonoBehaviour
     }
     private void EndQuiz(bool isSuccess)
     {
+        if (PlayerHealth.Instance != null)
+        {
+            PlayerHealth.Instance.IsInvincible = false;
+        }
         // 퀴즈 패널들은 즉시 끔
         for (int i = 0; i < quizPanels.Length; i++)
         {

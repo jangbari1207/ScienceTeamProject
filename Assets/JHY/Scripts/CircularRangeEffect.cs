@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CircularRangeEffect : MonoBehaviour
@@ -8,7 +9,7 @@ public class CircularRangeEffect : MonoBehaviour
     [SerializeField] private float baseRadius = 2.0f;
     [SerializeField] private int ultimateDamage = 50;
     [SerializeField] private float animationDuration = 1.0f;
-
+    private CinemachineImpulseSource impulseSource;
     private Animator ani;
     private Vector3 initialScale;
 
@@ -16,6 +17,7 @@ public class CircularRangeEffect : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         initialScale = transform.localScale;
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     public void ShowEffect(int comboCount)
@@ -44,6 +46,7 @@ public class CircularRangeEffect : MonoBehaviour
 
         if (ani != null)
         {
+            impulseSource.GenerateImpulse();
             ani.SetTrigger("Boom");
         }
 
