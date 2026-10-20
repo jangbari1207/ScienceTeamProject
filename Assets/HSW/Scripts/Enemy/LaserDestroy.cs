@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class LaserDestroy : MonoBehaviour
 {
+
+    public float cooldown = 0.8f;
+    
     void Start()
     {
         StartCoroutine(Destroy());
@@ -10,7 +13,7 @@ public class LaserDestroy : MonoBehaviour
     
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(cooldown);
         
         Destroy(gameObject);
     }
