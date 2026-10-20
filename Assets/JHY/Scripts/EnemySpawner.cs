@@ -11,7 +11,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRadius = 12f;
 
     private Coroutine spawnCoroutine;
-
+    [Header("아이템")]
+    [SerializeField] private GameObject healItemPrefab;
+    [SerializeField] private float healSpawnChance = 0.4f;
     private void Start()
     {
         if (WaveManager.Instance != null)
@@ -46,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnRoutine(int wave)
     {
-        float spawnInterval = Mathf.Max(0.6f, 2.0f - (wave * 0.15f));
+        float spawnInterval = Mathf.Max(0.6f, 3.5f - (wave * 0.15f));
 
         while (true)
         {
@@ -88,6 +90,11 @@ public class EnemySpawner : MonoBehaviour
         if (targetPrefab != null)
         {
             Instantiate(targetPrefab, spawnPos, Quaternion.identity);
+        }
+        if (healItemPrefab != null && Random.value < healSpawnChance)
+        {
+            Vector3 itemSpawnPos = GetRandomSpawnPosition();
+            Instantiate(healItemPrefab, itemSpawnPos, Quaternion.identity);
         }
     }
 

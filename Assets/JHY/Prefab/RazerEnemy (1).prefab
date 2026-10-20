@@ -349,6 +349,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5328311104793127126, guid: 613cc699dfcb0cd4588133b77f809205, type: 3}
   moveSpeed: 4
   attackRange: 25
-  fireRate: 3
+  fireRate: 2
   lastShotTime: 0
   previewPrefab: {fileID: 8723352238741553550, guid: 8cfcf9640fbf1314893871696fce380c, type: 3}
+  normalgunSound: {fileID: 0}
+  laserSound: {fileID: 8300000, guid: 3be0e81172a2fa84f8c0fe41ca27ca39, type: 3}

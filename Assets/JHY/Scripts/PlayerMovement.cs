@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
+        if (PlayerHealth.Instance.IsDead) return;
         RbCompo.linearVelocity = _moveDir * _speed;
     }
 

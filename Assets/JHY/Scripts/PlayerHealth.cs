@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject healthUIObject;
     [SerializeField] private GameObject ultimateUI;
+    [SerializeField] private GameObject waveText;
     public event Action OnDamaged;
     public event Action OnDead;
     public bool IsDead => currentHealth <= 0;
@@ -45,7 +47,16 @@ public class PlayerHealth : MonoBehaviour
             Die();
         }
     }
+    public void Heal(int amount)
+    {
+        if (IsDead) return; 
 
+        currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth, maxHealth); 
+
+        Debug.Log($"플레이어 체력 회복: {amount}, 현재 체력: {currentHealth}");
+        UpdateHealthUI();
+    }
     private void Die()
     {
         Debug.Log("플레이어 사망");
@@ -54,16 +65,26 @@ public class PlayerHealth : MonoBehaviour
         {
             healthUIObject.SetActive(false);
         }
-        if(ultimateUI != null)
+        if (ultimateUI != null)
         {
             ultimateUI.SetActive(false);
+        }
+        if(waveText != null)
+        {
+            waveText.SetActive(false);
         }
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
+            CanvasGroup canvasGroup = gameOverPanel.GetComponent<CanvasGroup>();
+            if (canvasGroup != null)
+            {
+                canvasGroup.alpha = 0f;
+                canvasGroup.DOFade(1f, 1f).SetUpdate(true);
+            }
         }
+        gameObject.SetActive(false);
     }
-
     private void UpdateHealthUI()
     {
         if (healthSlider != null)
@@ -78,7 +99,7 @@ public class PlayerHealth : MonoBehaviour
     }
     public void RestartGame()
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

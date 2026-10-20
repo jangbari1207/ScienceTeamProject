@@ -7,12 +7,15 @@ public class CircularRangeEffect : MonoBehaviour
     [Header("설정")]
     [SerializeField] private float scaleStep = 1.5f;
     [SerializeField] private float baseRadius = 2.0f;
-    [SerializeField] private int ultimateDamage = 50;
+    [Header("데미지 설정")]
+    [SerializeField] private int baseDamage = 10;                     
+    [SerializeField] private float damageMultiplierStep = 1.5f;
+    [SerializeField] private int ultimateDamage = 10;
     [SerializeField] private float animationDuration = 1.0f;
     private CinemachineImpulseSource impulseSource;
     private Animator ani;
     private Vector3 initialScale;
-
+    private int currentComboCount;
     private void Awake()
     {
         ani = GetComponent<Animator>();
@@ -22,6 +25,7 @@ public class CircularRangeEffect : MonoBehaviour
 
     public void ShowEffect(int comboCount)
     {
+        currentComboCount = comboCount;
         gameObject.SetActive(true);
         UpdateScale(comboCount);
     }
@@ -58,7 +62,7 @@ public class CircularRangeEffect : MonoBehaviour
     {
         float currentRadius = baseRadius * transform.localScale.x;
         Vector2 centerPos = transform.position;
-
+        int finalDamage = Mathf.RoundToInt(baseDamage * (1f + currentComboCount * damageMultiplierStep));
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(centerPos, currentRadius);
 
         foreach (Collider2D hit in hitColliders)
@@ -68,7 +72,7 @@ public class CircularRangeEffect : MonoBehaviour
                 var enemyScript = hit.GetComponent<HealthModule>();
                 if (enemyScript != null)
                 {
-                    enemyScript.TakeDamage(ultimateDamage);
+                    enemyScript.TakeDamage(finalDamage);
                 }
 
                 Debug.Log($"적중한 적: {hit.name}");

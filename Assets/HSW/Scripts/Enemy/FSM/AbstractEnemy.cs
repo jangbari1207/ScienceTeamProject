@@ -10,7 +10,8 @@ public abstract class AbstractEnemy : MonoBehaviour
     public float fireRate = 1f;
     public float lastShotTime;
     public GameObject previewPrefab;
-
+    public AudioClip normalgunSound;
+    public AudioClip laserSound;
     public Animator AnimCompo { get; private set; }
     public PlayerRenderer RenderCompo { get; private set; }
     protected virtual void Awake()

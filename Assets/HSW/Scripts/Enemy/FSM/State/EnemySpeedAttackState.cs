@@ -24,6 +24,7 @@ public class EnemySpeedAttackState : EnemyState
     }
     private void Shoot()
     {
+        //SoundManager.Instance.PlaySFX(enemy.normalgunSound);
         Vector2 dir =
             (enemy.Player.position - enemy.firePoint.position).normalized;
 

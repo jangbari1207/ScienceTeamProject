@@ -261,6 +261,8 @@ MonoBehaviour:
   fireRate: 1
   lastShotTime: 0
   previewPrefab: {fileID: 0}
+  normalgunSound: {fileID: 8300000, guid: 2c3719ff32462df4fa61a2d03a17a975, type: 3}
+  laserSound: {fileID: 0}
 --- !u!114 &7165431732013357339
 MonoBehaviour:
   m_ObjectHideFlags: 0
