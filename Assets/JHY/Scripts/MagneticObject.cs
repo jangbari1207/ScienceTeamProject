@@ -12,7 +12,7 @@ public class MagneticObject : MonoBehaviour
     protected float fireSpeed = 15f;
     private Rigidbody2D rb;
     private PlayerPolarity player;
-
+    public AudioClip parringSound;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,6 +36,7 @@ public class MagneticObject : MonoBehaviour
         }
         else
         {
+            SoundManager.Instance.PlaySFX(parringSound);
             rb.linearVelocity = mouseDirection * fireSpeed;
         }
 
@@ -56,7 +57,6 @@ public class MagneticObject : MonoBehaviour
         {
             transform.position = player.transform.position + (Vector3)(direction.normalized * 1.2f);
         }
-
         rb.linearVelocity = direction.normalized * fireSpeed;
     }
     public virtual void Drop()
@@ -70,7 +70,7 @@ public class MagneticObject : MonoBehaviour
 
         if (rb != null)
         {
-            rb.linearVelocity = Vector2.zero; // 속도 초기화
+            rb.linearVelocity = Vector2.zero; 
         }
     }
 }

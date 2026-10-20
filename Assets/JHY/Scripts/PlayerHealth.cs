@@ -26,7 +26,8 @@ public class PlayerHealth : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-
+    public AudioClip hitSound;
+    public AudioClip deadSound;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -51,8 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Max(0, currentHealth);
-
-        Debug.Log($"플레이어 남은 체력: {currentHealth}");
+        SoundManager.Instance.PlaySFX(hitSound);
         OnDamaged?.Invoke();
         UpdateHealthUI();
 
@@ -80,12 +80,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
 
-        Debug.Log($"플레이어 체력 회복: {amount}, 현재 체력: {currentHealth}");
         UpdateHealthUI();
     }
     private void Die()
     {
-        Debug.Log("플레이어 사망");
+        SoundManager.Instance.PlaySFX(deadSound);
         OnDead?.Invoke();
         if (healthUIObject != null)
         {

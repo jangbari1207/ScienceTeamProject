@@ -15,12 +15,19 @@ public class MagneticField : MonoBehaviour
     private PlayerPolarity playerPolarity;
     private MagneticInventory inventory;
     [SerializeField] private GameObject magneticField;
-
+    [Header("UI")]
+    [SerializeField] private Slider cooldownSlider;
     private void Awake()
     {
         magneticField.SetActive(false);
         playerPolarity = GetComponent<PlayerPolarity>();
         inventory = GetComponent<MagneticInventory>();
+        if (cooldownSlider != null)
+        {
+            cooldownSlider.maxValue = cooldownTime;
+            cooldownSlider.value = 0f;
+            cooldownSlider.gameObject.SetActive(false); 
+        }
     }
 
     private void Update()
@@ -29,6 +36,23 @@ public class MagneticField : MonoBehaviour
         if (currentCooldown > 0f)
         {
             currentCooldown -= Time.deltaTime;
+
+            if (cooldownSlider != null)
+            {
+                if (!cooldownSlider.gameObject.activeSelf)
+                    cooldownSlider.gameObject.SetActive(true);
+
+                cooldownSlider.value = currentCooldown;
+            }
+
+            if (currentCooldown <= 0f)
+            {
+                currentCooldown = 0f;
+                if (cooldownSlider != null)
+                {
+                    cooldownSlider.gameObject.SetActive(false);
+                }
+            }
         }
 
         if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
@@ -96,7 +120,6 @@ public class MagneticField : MonoBehaviour
         {
             if (currentCooldown > 0f)
             {
-                Debug.Log($"자기장 쿨타임 중입니다! 남은 시간: {currentCooldown:F1}초");
                 return;
             }
 
@@ -121,6 +144,13 @@ public class MagneticField : MonoBehaviour
             inventory.DropCapturedObjects();
         }
         currentCooldown = cooldownTime;
+
+        if (cooldownSlider != null)
+        {
+            cooldownSlider.maxValue = cooldownTime;
+            cooldownSlider.value = currentCooldown;
+            cooldownSlider.gameObject.SetActive(true);
+        }
     }
     private void OnDrawGizmosSelected()
     {

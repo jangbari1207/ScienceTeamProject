@@ -9,7 +9,7 @@ public class MagneticInventory : MonoBehaviour
 
     private List<MagneticObject> capturedObjects = new List<MagneticObject>();
     private PlayerPolarity playerPolarity;
-
+    public AudioClip fireSound;
     private void Awake()
     {
         playerPolarity = GetComponent<PlayerPolarity>();
@@ -81,6 +81,7 @@ public class MagneticInventory : MonoBehaviour
             if (obj != null)
             {
                 obj.Fire(direction);
+                SoundManager.Instance.PlaySFX(fireSound);
                 yield return new WaitForSeconds(fireInterval);
             }
         }

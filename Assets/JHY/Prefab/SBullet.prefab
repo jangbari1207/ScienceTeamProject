@@ -227,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   magneticForce: 10
   captureDistance: 0.7
+  parringSound: {fileID: 8300000, guid: 2f4c60011be23a54c9853f8423d6963e, type: 3}
   bulletSO: {fileID: 11400000, guid: 78383057ec842994ebed6d67d0d83334, type: 2}
 --- !u!61 &9147432562618052776
 BoxCollider2D:
