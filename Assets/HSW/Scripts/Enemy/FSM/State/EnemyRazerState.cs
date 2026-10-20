@@ -35,6 +35,8 @@ public class EnemyRazerState : EnemyState
 
     public override void UpdateState()
     {
+        if (PlayerHealth.Instance == null || PlayerHealth.Instance.IsDead)
+            return;
         if (enemy.Player == null || enemy.firePoint == null)
             return;
 
