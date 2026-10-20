@@ -9,6 +9,7 @@ public class EnemyDeadState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        SoundManager.Instance.PlaySFX(enemy.deadSound);
     }
     public override void UpdateState()
     {

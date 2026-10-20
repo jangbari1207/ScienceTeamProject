@@ -12,6 +12,9 @@ public abstract class AbstractEnemy : MonoBehaviour
     public GameObject previewPrefab;
     public AudioClip normalgunSound;
     public AudioClip laserSound;
+    public AudioClip bossSound;
+    public AudioClip hitSound;
+    public AudioClip deadSound;
     public Animator AnimCompo { get; private set; }
     public PlayerRenderer RenderCompo { get; private set; }
     protected virtual void Awake()

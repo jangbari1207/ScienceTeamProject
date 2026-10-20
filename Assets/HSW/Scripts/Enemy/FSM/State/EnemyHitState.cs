@@ -9,6 +9,7 @@ public class EnemyHitState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        SoundManager.Instance.PlaySFX(enemy.hitSound);
     }
 
     public override void UpdateState()

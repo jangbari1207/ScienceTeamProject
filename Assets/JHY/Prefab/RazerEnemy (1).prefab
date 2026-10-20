@@ -354,3 +354,5 @@ MonoBehaviour:
   previewPrefab: {fileID: 8723352238741553550, guid: 8cfcf9640fbf1314893871696fce380c, type: 3}
   normalgunSound: {fileID: 0}
   laserSound: {fileID: 8300000, guid: 3be0e81172a2fa84f8c0fe41ca27ca39, type: 3}
+  hitSound: {fileID: 8300000, guid: 1e5518f4b43612040a98c68a018549fb, type: 3}
+  deadSound: {fileID: 8300000, guid: 1df958e89a1ec684b813c2a89fa0aa9b, type: 3}

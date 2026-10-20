@@ -10,7 +10,7 @@ public class Boss : AbstractEnemy
         health = GetComponent<HealthModule>();
         stateMachine.AddState(EnemyStateType.Idle, new EnemyIdleState(this, stateMachine, "Idle"));
         stateMachine.AddState(EnemyStateType.Chase, new EnemyChaseState(this, stateMachine, "Chase"));
-        stateMachine.AddState(EnemyStateType.Attack, new EnemyAttackState(this, stateMachine, "Attack"));
+        stateMachine.AddState(EnemyStateType.Attack, new BossAttackState(this, stateMachine, "Attack"));
         stateMachine.AddState(EnemyStateType.Hit, new EnemyHitState(this, stateMachine, "Hit"));
         stateMachine.AddState(EnemyStateType.Dead, new EnemyDeadState(this, stateMachine, "Dead"));
 

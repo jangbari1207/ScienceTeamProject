@@ -274,6 +274,10 @@ MonoBehaviour:
   fireRate: 1
   lastShotTime: 0
   previewPrefab: {fileID: 0}
+  normalgunSound: {fileID: 0}
+  laserSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 1e5518f4b43612040a98c68a018549fb, type: 3}
+  deadSound: {fileID: 8300000, guid: 1df958e89a1ec684b813c2a89fa0aa9b, type: 3}
 --- !u!1 &2291486387400664551
 GameObject:
   m_ObjectHideFlags: 0

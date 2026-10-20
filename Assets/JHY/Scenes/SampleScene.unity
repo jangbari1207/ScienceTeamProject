@@ -191850,6 +191850,63 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 231.27005}
   m_EdgeRadius: 0
+--- !u!1001 &845933606
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.417395
+      objectReference: {fileID: 0}
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5029745
+      objectReference: {fileID: 0}
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 874673266396941249, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185472311912094889, guid: e237907c227e4d64d87578f888842d47, type: 3}
+      propertyPath: m_Name
+      value: RazerEnemy (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e237907c227e4d64d87578f888842d47, type: 3}
 --- !u!1 &846728344
 GameObject:
   m_ObjectHideFlags: 0
@@ -209523,6 +209580,7 @@ MonoBehaviour:
   healthUIObject: {fileID: 499961534}
   ultimateUI: {fileID: 1161563974}
   waveText: {fileID: 2051592300}
+  flashDuration: 0.1
 --- !u!1 &932379196
 GameObject:
   m_ObjectHideFlags: 0
@@ -410550,3 +410608,4 @@ SceneRoots:
   - {fileID: 314637229}
   - {fileID: 1068549776}
   - {fileID: 1358221747}
+  - {fileID: 845933606}
