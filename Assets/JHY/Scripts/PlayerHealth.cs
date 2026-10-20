@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static PlayerHealth Instance { get; private set; }
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private GameObject gameOverPanel;
@@ -18,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null) Instance = this;
         currentHealth = maxHealth;
         UpdateHealthUI();
 

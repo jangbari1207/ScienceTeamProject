@@ -8,6 +8,10 @@ public class EnemyChaseState : EnemyState
 
     public override void UpdateState()
     {
+        if (PlayerHealth.Instance == null || PlayerHealth.Instance.IsDead)
+        {
+            return;
+        }
         Vector2 dir =
             enemy.Player.position - enemy.transform.position;
         enemy.RenderCompo.Flipx(dir.x);
