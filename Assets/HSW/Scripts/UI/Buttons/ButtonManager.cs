@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,9 +8,17 @@ using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour
 {
     public GameObject SettingPanel;
+    public Animator animtor;
     [SerializeField] private AudioClip clickSound;
     public void Play()
     {
+        StartCoroutine(PlayAnim());
+    }
+
+    IEnumerator PlayAnim()
+    {
+        animtor.SetBool("Close", true);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("SampleScene");
     }
 
