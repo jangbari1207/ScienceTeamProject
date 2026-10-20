@@ -7,12 +7,14 @@ public class HealthModule : MonoBehaviour
 
     public event Action OnDamaged;
     public event Action onDead;
+    private Collider2D col;
     public bool IsDead => currentHealth <= 0;
     private int currentHealth;
 
     private void Awake()
     {
         currentHealth = health;
+        col = GetComponent<Collider2D>();
     }
     public void TakeDamage(int damage)
     {
@@ -32,6 +34,10 @@ public class HealthModule : MonoBehaviour
     public void Dead()
     {
         Debug.Log("죽음");
+        if (col != null)
+        {
+            col.enabled = false;
+        }
         onDead?.Invoke();
         if (UltimateManager.Instance != null)
         {

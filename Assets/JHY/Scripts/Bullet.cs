@@ -43,6 +43,11 @@ public class Bullet : MagneticObject
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+            return;
+        }
         if (isPlayerBullet)
         {
             if (collision.CompareTag("Enemy"))
@@ -73,7 +78,11 @@ public class Bullet : MagneticObject
             }
             else
             {
-                collision.GetComponent<HealthModule>()?.TakeDamage(damage);
+                PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(damage);
+                }
                 gameObject.SetActive(false);
                 return;
             }
