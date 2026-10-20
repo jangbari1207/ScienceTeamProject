@@ -3,7 +3,7 @@ using UnityEngine;
 public class MagneticObject : MonoBehaviour
 {
     protected Polarity polarity;
-    public Polarity Polarity => polarity; 
+    public Polarity Polarity => polarity;
 
     [Header("Magnetic")]
     [SerializeField] private float magneticForce = 10f;
@@ -14,14 +14,27 @@ public class MagneticObject : MonoBehaviour
     private PlayerPolarity player;
     public AudioClip parringSound;
     private bool hasPlayedParry = false;
+    private float ignoreMagneticTimer = 0f; 
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = FindFirstObjectByType<PlayerPolarity>();
     }
 
+    private void Update()
+    {
+        if (ignoreMagneticTimer > 0f)
+        {
+            ignoreMagneticTimer -= Time.deltaTime;
+        }
+    }
+
     public virtual bool ApplyMagneticForce(Vector2 playerPosition, Polarity playerPolarity, Vector2 mouseDirection)
     {
+        if (ignoreMagneticTimer > 0f)
+            return false;
+
         Vector2 directionToPlayer = playerPosition - rb.position;
         float distance = directionToPlayer.magnitude;
 
@@ -31,7 +44,7 @@ public class MagneticObject : MonoBehaviour
             if (distance <= captureDistance)
             {
                 Capture();
-                return true; 
+                return true;
             }
 
             rb.linearVelocity = directionToPlayer.normalized * magneticForce;
@@ -41,7 +54,7 @@ public class MagneticObject : MonoBehaviour
             if (!hasPlayedParry)
             {
                 SoundManager.Instance.PlaySFX(parringSound);
-                hasPlayedParry = true; 
+                hasPlayedParry = true;
             }
             rb.linearVelocity = mouseDirection * fireSpeed;
         }
@@ -51,6 +64,7 @@ public class MagneticObject : MonoBehaviour
 
     private void Capture()
     {
+        hasPlayedParry = false;
         rb.linearVelocity = Vector2.zero;
         gameObject.SetActive(false);
     }
@@ -58,6 +72,8 @@ public class MagneticObject : MonoBehaviour
     public virtual void Fire(Vector2 direction)
     {
         gameObject.SetActive(true);
+        hasPlayedParry = false;
+        ignoreMagneticTimer = 0.2f; 
 
         if (player != null)
         {
@@ -65,9 +81,12 @@ public class MagneticObject : MonoBehaviour
         }
         rb.linearVelocity = direction.normalized * fireSpeed;
     }
+
     public virtual void Drop()
     {
         gameObject.SetActive(true);
+        hasPlayedParry = false;
+        ignoreMagneticTimer = 0.2f;
 
         if (player != null)
         {
@@ -76,7 +95,7 @@ public class MagneticObject : MonoBehaviour
 
         if (rb != null)
         {
-            rb.linearVelocity = Vector2.zero; 
+            rb.linearVelocity = Vector2.zero;
         }
     }
 }
