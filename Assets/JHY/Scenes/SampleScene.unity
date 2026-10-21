@@ -219236,8 +219236,8 @@ GameObject:
   - component: {fileID: 987140213}
   - component: {fileID: 987140215}
   - component: {fileID: 987140214}
-  - component: {fileID: 987140216}
   - component: {fileID: 987140217}
+  - component: {fileID: 987140218}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -219341,24 +219341,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &987140216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987140212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a27a7987cc5cbd34a985cfdf074b9964, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CircularRangeEffect
-  scaleStep: 0.7
-  baseRadius: 2.5
-  baseDamage: 10
-  damageMultiplierStep: 1.5
-  ultimateDamage: 10
-  animationDuration: 1
 --- !u!114 &987140217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219412,6 +219394,24 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &987140218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987140212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64667216ae940244885242e6091f8533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CircleRangeEffect
+  scaleStep: 1.5
+  startRadius: 2
+  baseDamage: 10
+  damageStep: 1.5
+  ultimateDamage: 10
+  aniDuration: 1
 --- !u!1 &1010358337
 GameObject:
   m_ObjectHideFlags: 0
@@ -228337,7 +228337,7 @@ MonoBehaviour:
   - {fileID: 969712039}
   - {fileID: 195781178}
   - {fileID: 871091087}
-  rangeEffect: {fileID: 987140216}
+  rangeEffect: {fileID: 987140218}
   openQZSound: {fileID: 8300000, guid: 83c1956d7d5323d4182288a651049d2d, type: 3}
 --- !u!1 &1079434889
 GameObject:

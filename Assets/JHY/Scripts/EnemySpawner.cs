@@ -47,7 +47,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnRoutine(int wave)
     {
-        float spawnInterval = Mathf.Max(0.6f, 3.5f - (wave * 0.15f));
+        float spawnInterval = Mathf.Max(0.6f, 3f - (wave * 0.15f));
 
         while (true)
         {
