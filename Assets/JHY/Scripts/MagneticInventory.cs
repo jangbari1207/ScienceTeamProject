@@ -27,7 +27,7 @@ public class MagneticInventory : MonoBehaviour
             capturedObjects.Add(magneticObject);
         }
     }
-    public void DropCapturedObjects()
+    public void DropObjects()
     {
         if (capturedObjects.Count == 0)
             return;

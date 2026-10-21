@@ -108,7 +108,6 @@ public class MagneticField : MonoBehaviour
         }
 
     }
-
     private void ToggleField()
     {
         if (IsActive)
@@ -140,7 +139,7 @@ public class MagneticField : MonoBehaviour
 
         if (inventory != null)
         {
-            inventory.DropCapturedObjects();
+            inventory.DropObjects();
         }
         currentCooldown = cooldownTime;
 

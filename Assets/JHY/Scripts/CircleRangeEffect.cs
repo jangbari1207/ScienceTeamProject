@@ -2,16 +2,16 @@ using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class CircularRangeEffect : MonoBehaviour
+public class CircleRangeEffect : MonoBehaviour
 {
     [Header("설정")]
     [SerializeField] private float scaleStep = 1.5f;
-    [SerializeField] private float baseRadius = 2.0f;
+    [SerializeField] private float startRadius = 2.0f;
     [Header("데미지 설정")]
     [SerializeField] private int baseDamage = 10;                     
-    [SerializeField] private float damageMultiplierStep = 1.5f;
+    [SerializeField] private float damageStep = 1.5f;
     [SerializeField] private int ultimateDamage = 10;
-    [SerializeField] private float animationDuration = 1.0f;
+    [SerializeField] private float aniDuration = 1.0f;
     private CinemachineImpulseSource impulseSource;
     private Animator ani;
     private Vector3 initialScale;
@@ -45,7 +45,7 @@ public class CircularRangeEffect : MonoBehaviour
     {
         if (isSuccess)
         {
-            ApplyDamageToEnemies();
+            DamageToEnemy();
         }
 
         if (ani != null)
@@ -54,15 +54,15 @@ public class CircularRangeEffect : MonoBehaviour
             ani.SetTrigger("Boom");
         }
 
-        yield return new WaitForSeconds(animationDuration);
+        yield return new WaitForSeconds(aniDuration);
 
         gameObject.SetActive(false);
     }
-    private void ApplyDamageToEnemies()
+    private void DamageToEnemy()
     {
-        float currentRadius = baseRadius * transform.localScale.x;
+        float currentRadius = startRadius * transform.localScale.x;
         Vector2 centerPos = transform.position;
-        int finalDamage = Mathf.RoundToInt(baseDamage * (1f + currentComboCount * damageMultiplierStep));
+        int finalDamage = Mathf.RoundToInt(baseDamage * (1f + currentComboCount * damageStep));
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(centerPos, currentRadius);
 
         foreach (Collider2D hit in hitColliders)
@@ -82,6 +82,6 @@ public class CircularRangeEffect : MonoBehaviour
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.purple;
-        Gizmos.DrawWireSphere(transform.position, baseRadius);
+        Gizmos.DrawWireSphere(transform.position, startRadius);
     }
 }

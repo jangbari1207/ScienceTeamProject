@@ -8,7 +8,7 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private GameObject[] quizPanels;
 
     [Header("원형 범위 연출 컴포넌트 연결")]
-    [SerializeField] private CircularRangeEffect rangeEffect;
+    [SerializeField] private CircleRangeEffect rangeEffect;
     [SerializeField] private AudioClip openQZSound;
     private int currentPanelIndex = 0;
     private int comboCount = 0;

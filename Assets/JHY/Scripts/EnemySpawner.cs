@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
         if (WaveManager.Instance != null)
         {
             WaveManager.Instance.NextWave += HandleWave;
-            StartWaveSpawning(WaveManager.Instance.waveCount);
+            StartWaveSpawn(WaveManager.Instance.waveCount);
         }
     }
 
@@ -33,10 +33,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void HandleWave(int waveCount)
     {
-        StartWaveSpawning(waveCount);
+        StartWaveSpawn(waveCount);
     }
 
-    private void StartWaveSpawning(int wave)
+    private void StartWaveSpawn(int wave)
     {
         if (spawnCoroutine != null)
         {
@@ -58,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(int wave)
     {
-        Vector3 spawnPos = GetRandomSpawnPosition();
+        Vector3 spawnPos = RandomSpawnPos();
         GameObject targetPrefab = null;
 
         if (wave == 10)
@@ -92,12 +92,12 @@ public class EnemySpawner : MonoBehaviour
         }
         if (healItemPrefab != null && Random.value < healSpawnChance)
         {
-            Vector3 itemSpawnPos = GetRandomSpawnPosition();
+            Vector3 itemSpawnPos = RandomSpawnPos();
             Instantiate(healItemPrefab, itemSpawnPos, Quaternion.identity);
         }
     }
 
-    private Vector3 GetRandomSpawnPosition()
+    private Vector3 RandomSpawnPos()
     {
         if (spawnPoints != null && spawnPoints.Length > 0)
         {

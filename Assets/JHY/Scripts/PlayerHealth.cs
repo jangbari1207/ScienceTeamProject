@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject healthUIObject;
     [SerializeField] private GameObject ultimateUI;
     [SerializeField] private GameObject waveText;
+    [SerializeField] private GameObject ultimateGage;
 
     [Header("피격 연출 설정")]
     [SerializeField] private float flashDuration = 0.1f; 
@@ -97,6 +98,10 @@ public class PlayerHealth : MonoBehaviour
         if (waveText != null)
         {
             waveText.SetActive(false);
+        }
+        if(ultimateGage != null)
+        {
+            ultimateGage.SetActive(false);
         }
         if (gameOverPanel != null)
         {
